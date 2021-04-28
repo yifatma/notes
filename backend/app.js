@@ -1,18 +1,17 @@
-const express=require('express')
-const DBFactory=require('./db/dbFactory')
-const setupController=require('./controllers/setupController')
-const apiController=require('./controllers/apiController')
-const app=express()
+const express = require('express')
+const DBFactory = require('./db/dbFactory')
+const setupController = require('./controllers/setupController')
+const apiController = require('./controllers/apiController')
+const app = express()
 
-const port=process.env.PORT||3000
+const port = process.env.PORT || 3000
 
-app.use('/assets', express.static(__dirname+'/public'))
+app.use('/assets', express.static(__dirname + '/public'))
 
 app.set('view engine', 'ejs')
 
-const createDBConnection=new Promise(async (resolve, reject) => {
-
-    const dbUtils=DBFactory.getDBUtils()
+const createDBConnection = new Promise(async (resolve, reject) => {
+    const dbUtils = DBFactory.getDBUtils()
     await dbUtils.createDBConnection()
     resolve()
 })

@@ -1,11 +1,11 @@
 
-const mongoose=require('mongoose')
-const Todos=require('./models/todoModel')
-const todoUtils=require('./utils/todoUtils')
+const mongoose = require('mongoose')
+const Todos = require('./models/todoModel')
+const todoUtils = require('./utils/todoUtils')
 
 
 
-module.exports=class DBUtils {
+module.exports = class DBUtils {
 
     async createDBConnection() {
         console.log(`Start createDBConnection`)
@@ -17,14 +17,14 @@ module.exports=class DBUtils {
             useUnifiedTopology: true,
             useFindAndModify: false,
             useCreateIndex: true
-        });
+        })
 
         console.log(`End Init Schema`)
         return 'SUCCESS'
     }
     async insertSeedData() {
 
-        const starterTodo=[
+        const starterTodo = [
             {
                 username: 'test',
                 todo: 'Milk',
@@ -45,7 +45,7 @@ module.exports=class DBUtils {
             }
         ]
 
-        const result=await Todos.create(starterTodo)
+        const result = await Todos.create(starterTodo)
         console.log(`Data inserted: ${result}`)
         return result
     }
