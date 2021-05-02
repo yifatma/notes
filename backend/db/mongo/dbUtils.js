@@ -1,8 +1,9 @@
 
 const mongoose = require('mongoose')
-const Todos = require('./models/todoModel')
-const todoUtils = require('./utils/todoUtils')
-
+const Todos = require('./models/itemModel')
+const itemUtils = require('./utils/itemUtils')
+const userUtils = require('./utils/userUtils')
+const noteUtils = require('./utils/noteUtils')
 
 
 module.exports = class DBUtils {
@@ -22,33 +23,44 @@ module.exports = class DBUtils {
         console.log(`End Init Schema`)
         return 'SUCCESS'
     }
-    async insertSeedData() {
+    // async insertSeedData() {
 
-        const starterTodo = [
-            {
-                username: 'test',
-                todo: 'Milk',
-                isDone: false,
-                hasAttachment: false
-            },
-            {
-                username: 'test',
-                todo: 'Oil',
-                isDone: false,
-                hasAttachment: false
-            },
-            {
-                username: 'test',
-                todo: 'Banana',
-                isDone: false,
-                hasAttachment: false
-            }
-        ]
+    //     // const starterTodo = [
+    //     //     {
+    //     //         noteId: 'test',
+    //     //         todo: 'Milk',
+    //     //         isDone: false,
+    //     //         hasAttachment: false
+    //     //     },
+    //     //     {
+    //     //         noteId: 'test',
+    //     //         todo: 'Oil',
+    //     //         isDone: false,
+    //     //         hasAttachment: false
+    //     //     },
+    //     //     {
+    //     //         noteId: 'test',
+    //     //         todo: 'Banana',
+    //     //         isDone: false,
+    //     //         hasAttachment: false
+    //     //     }
+    //     // ]
 
-        const result = await Todos.create(starterTodo)
-        console.log(`Data inserted: ${result}`)
-        return result
-    }
+    //     const starterUser = [
+    //         {
+    //             email: 'yifatmay@yahoo.com',
+    //             firstName: 'Yifat',
+    //             lastName: 'Mayron',
+    //             password: 'MMM'
+    //         }]
 
-    getTodoUtils() { return todoUtils }
+    //     const result = await Todos.create(starterUser)
+    //     console.log(`Data inserted: ${result}`)
+    //     return result
+    // }
+
+    getItemUtils() { return itemUtils }
+    getUserUtils() { return userUtils }
+    getNoteUtils() { return noteUtils }
+
 }
