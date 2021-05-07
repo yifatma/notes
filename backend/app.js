@@ -1,9 +1,9 @@
 const express = require('express')
 const DBFactory = require('./db/dbFactory')
-const setupController = require('./controllers/setupController')
-const itemController = require('./controllers/itemController')
-const userController = require('./controllers/userController')
-const noteController = require('./controllers/noteController')
+// const setupController = require('./controllers/setupController')
+const itemController = require('./controllers/itemsController')
+const userController = require('./controllers/usersController')
+const noteController = require('./controllers/notesController')
 
 const app = express()
 

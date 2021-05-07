@@ -1,9 +1,9 @@
 
 const mongoose = require('mongoose')
 const Todos = require('./models/itemModel')
-const itemUtils = require('./utils/itemUtils')
-const userUtils = require('./utils/userUtils')
-const noteUtils = require('./utils/noteUtils')
+const itemUtils = require('./utils/itemsUtils')
+const userUtils = require('./utils/usersUtils')
+const noteUtils = require('./utils/notesUtils')
 
 
 module.exports = class DBUtils {

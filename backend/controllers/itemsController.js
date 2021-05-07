@@ -20,13 +20,13 @@ module.exports = function (app) {
         }
     })
 
-    app.get('/api/item/:id', async function (req, res) {
+    app.get('/api/items/:id', async function (req, res) {
         const item = await itemUtils.getById(req.params.id)
 
         res.send(item)
     })
 
-    app.post('/api/item', async function (req, res) {
+    app.post('/api/items', async function (req, res) {
 
         if (req.body.id) {
             const obj = await itemUtils.getById(req.body.id)
@@ -57,7 +57,7 @@ module.exports = function (app) {
         }
     })
 
-    app.delete('/api/item', async function (req, res) {
+    app.delete('/api/items', async function (req, res) {
         var id = req.body.id
 
         const todo = await itemUtils.findByIdAndRemove(id)

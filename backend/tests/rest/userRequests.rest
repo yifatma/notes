@@ -1,0 +1,74 @@
+GET http://localhost:3000/api/users?email=yifatmay@yahoo.com
+
+### Negative test new_password doesn't exist
+PATCH  http://localhost:3000/api/users/password
+Content-Type: application/json
+
+{
+    "id": "608e69f5ae62d10be022b4f3",
+    "old_password": "MMM!!!"
+}
+
+### Negative test IDnot exist 
+PATCH  http://localhost:3000/api/users/password
+Content-Type: application/json
+
+{
+    "id": "608e69f5ae62d10be022b4f4",
+    "old_password": "MMM!!!",
+    "new_password": "YYY"
+}
+
+### Negative test old_password is wrong
+PATCH  http://localhost:3000/api/users/password
+Content-Type: application/json
+
+{
+    "id": "608e69f5ae62d10be022b4f3",
+    "old_password": "MMM!!!",
+    "new_password": "YYY"
+}
+
+### Change the password
+PATCH  http://localhost:3000/api/users/password
+Content-Type: application/json
+
+{
+    "id": "608e69f5ae62d10be022b4f3",
+    "old_password": "MMM",
+    "new_password": "YYY"
+}
+
+### Done
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "email": "yifatmay@yahoo.com"
+}
+
+###
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "id": "608e72acb6d00b1650fb129",
+    "email": "yifatmay@yahoo.com",
+    "password": "MMM"
+}
+
+_id
+:
+608e69f5ae62d10be022b4f3
+email
+:
+"yifatmay@yahoo.com"
+firstName
+:
+"Yifat"
+lastName
+:
+"Mayron"
+password
+:
+"$2b$10$W2L9SbcWW4MP4bvYxTr0Uum/KiIBsnDC/75BKpQMBK9C7uSt17A1i"
