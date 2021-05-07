@@ -11,9 +11,7 @@ const userSchema = Joi.object({
     password: Joi.string()
         .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
 
-    old_password: Joi.ref('password'),
 
-    new_password: Joi.ref('password')
 })
 
 const validChangePasswordSchema = Joi.object({
@@ -27,7 +25,12 @@ const validChangePasswordSchema = Joi.object({
     // new_password: Joi.required().valid(Joi.ref('old_password'))
 })
 
+const validateGetQuarySchem = Joi.object({
+    email: Joi.string().required().email({ tlds: { allow: false } })
+})
+
 module.exports = {
     userSchema,
-    validChangePasswordSchema
+    validChangePasswordSchema,
+    validateGetQuarySchem
 }

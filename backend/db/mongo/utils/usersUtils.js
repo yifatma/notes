@@ -4,20 +4,22 @@ const Users = require('../models/userModel')
 async function getObj(obj) {
 
     const user = await Users.find(obj)
-    if (!user)
-        throw { "message": `User ${obj} does not exist`, "status": 404, "code": "USER_NOT_EXIST" }
+    if (user.length == 0)
+        throw { "message": `User ${JSON.stringify(obj)} does not exist`, "status": 404, "code": "USER_NOT_EXIST" }
 
     return user
 }
 
+//Good
 async function getById(id) {
 
     const obj = await Users.findById(id)
-    if (!obj)
+    if (obj.length == 0)
         throw { "message": `User ID ${id} not exist`, "status": 404, "code": "USER_NOT_EXIST" }
     return obj
 }
 
+//To Check error case
 async function findByIdAndUpdate(id, obj) {
 
     try {
@@ -25,8 +27,8 @@ async function findByIdAndUpdate(id, obj) {
     } catch (err) {
         const error = _.chain(err)
             .pick(['message'])
-            .set('status', 400)
-            .set('code', 'MISSING_PASSWORD')
+            .set('status', 404)
+            .set('code', 'USER_NOT_EXIST')
             .value()
         throw error
     }

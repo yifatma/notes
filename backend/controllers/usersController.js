@@ -30,15 +30,30 @@ async function updateUserData(req, hashedPassword) {
 module.exports = function (app) {
 
     app.get('/api/users/:id', async function (req, res) {
-        const user = await userUtils.getById(req.params.id)
+        try {
+            const user = await userUtils.getById(req.params.id)
 
-        res.send(user)
+            res.status(200).send(user)
+        } catch (err) {
+            const status = err.status ? err.status : 500
+            res.status(status).send(err)
+            throw err
+        }
     })
 
+    //Done
     app.get('/api/users', async function (req, res) {
-        const user = await userUtils.getObj({ email: req.query.email })
+        try {
+            await userValidation.validateGetQuary(req.query)
 
-        res.send(user)
+            const user = await userUtils.getObj({ email: req.query.email })
+
+            res.status(200).send(user)
+        } catch (err) {
+            const status = err.status ? err.status : 500
+            res.status(status).send(err)
+            throw err
+        }
     })
 
     //Done
@@ -53,9 +68,11 @@ module.exports = function (app) {
 
             const hashedPassword = await passwordValidation.hashedPassword(req.body.new_password)
 
-            res.status(201).send(await userUtils.findByIdAndUpdate(req.body.id, { "password": hashedPassword }))
+            res.status(200).send(await userUtils.findByIdAndUpdate(req.body.id, { "password": hashedPassword }))
+
         } catch (err) {
-            res.send(err)
+            const status = err.status ? err.status : 500
+            res.status(status).send(err)
             throw err
         }
 

@@ -1,4 +1,11 @@
+### Success case
 GET http://localhost:3000/api/users?email=yifatmay@yahoo.com
+
+### Negative case - wrong email
+GET http://localhost:3000/api/users?email=yifatm@yahoo.com
+
+### Negative case - email not exist
+GET http://localhost:3000/api/users?ema=yifatmay@yahoo.com
 
 ### Negative test new_password doesn't exist
 PATCH  http://localhost:3000/api/users/password
